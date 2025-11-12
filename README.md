@@ -1,2 +1,2 @@
 # zedscan
-ZEDScan blockchain explorer demo
+ZEDScan blockchain explorer 
