@@ -1,274 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ScanZED — ZED 2.0 Explorer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScanZED Explorer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  body { overflow-x: hidden; }
+  .sidebar-link:hover { background: rgba(255,255,255,0.08); }
+</style>
+
 </head>
 <body class="bg-slate-950 text-slate-100">
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
-    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="text-xl font-extrabold tracking-tight">Scan<span class="text-cyan-400">ZED</span></span>
-        <span class="ml-2 text-xs px-2 py-0.5 rounded-full border border-white/10 text-slate-300">ZED 2.0</span>
-      </div>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
-        <a class="hover:text-white" href="#transactions">Transactions</a>
-        <a class="hover:text-white" href="#blocks">Blocks</a>
-        <a class="hover:text-white" href="#holders">Top Holders</a>
-        <a class="hover:text-white" href="#tokens">Tokens</a>
-        <a class="hover:text-white" href="#charts">Charts & Stats</a>
-        <a class="hover:text-white" href="#api">API</a>
-      </nav>
-    </div>
-  </header>
+<!-- ======================================= -->
+<!--            TOP NAVIGATION (QALSIN)      -->
+<!-- ======================================= -->
 
-  <!-- HERO -->
-  <section class="relative">
-    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(0,188,212,.20),rgba(2,6,23,0))]"></div>
-    <div class="mx-auto max-w-7xl px-4 py-14 grid lg:grid-cols-2 gap-8 items-start">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-black leading-tight">Multi-Chain Explorer & <span class="text-cyan-400">DeFi Hub</span></h1>
-        <p class="mt-4 text-slate-300">Fast landing for <b>scanzed.com</b>. Clean, responsive, GitHub Pages-ready.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#transactions" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-900 font-semibold">View Transactions</a>
-          <a id="api" href="#api" class="px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15">Developer API</a>
-        </div>
-        <div class="mt-5 flex items-center gap-3 text-xs text-slate-400">
-          <span class="px-2 py-0.5 rounded-full border border-white/10">BNB Smart Chain</span>
-          <span class="px-2 py-0.5 rounded-full border border-white/10">ZED 2.0</span>
-        </div>
+<header class="px-6 py-4 flex items-center justify-between bg-slate-900/40 backdrop-blur border-b border-white/10">
+  <div class="flex items-center gap-2">
+    <span class="text-xl font-bold text-cyan-400">ScanZED</span>
+    <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded text-xs">Preview</span>
+  </div>
+
+  <nav class="flex gap-6 text-sm text-slate-300">
+    <a href="#" class="hover:text-white">Blockchain</a>
+    <a href="#" class="hover:text-white">Transactions</a>
+    <a href="#" class="hover:text-white">Blocks</a>
+    <a href="#" class="hover:text-white">Top Holders</a>
+    <a href="#" class="hover:text-white">Verified Contracts</a>
+  </nav>
+</header>
+
+
+<!-- ======================================= -->
+<!--               HERO SECTION              -->
+<!-- ======================================= -->
+
+<section class="pt-20 pb-28 px-6 text-center max-w-6xl mx-auto">
+  <h1 class="text-5xl font-bold">
+    Multi-Chain Explorer & <br>
+    <span class="text-cyan-400">DeFi Hub</span>
+  </h1>
+
+  <p class="mt-6 text-slate-300">A fast landing for <b>scanzed.com</b>. Plug your contracts, pools and stats here.
+    <br> Clean, responsive and GitHub Pages-ready.
+  </p>
+
+  <div class="mt-8 flex justify-center gap-4 flex-wrap">
+    <a href="#" class="px-5 py-2 bg-cyan-500 text-slate-900 rounded-xl font-semibold">View Transactions</a>
+    <a href="#" class="px-5 py-2 bg-white/10 ring-1 ring-white/10 rounded-xl">Developer API</a>
+  </div>
+</section>
+
+
+<!-- ======================================= -->
+<!--       SIDEBAR + DASHBOARD PART          -->
+<!-- ======================================= -->
+
+<div class="flex w-full">
+
+  <!-- ===== SIDEBAR (260px genişlik – Zedscan kimi) ===== -->
+  <aside class="w-64 bg-slate-900/40 backdrop-blur border-r border-white/10 p-4">
+
+    <nav class="space-y-2 text-slate-300 text-base">
+
+      <a href="dashboard.html" class="block px-4 py-2 rounded-lg sidebar-link">Dashboard</a>
+      <a href="blockchain.html" class="block px-4 py-2 rounded-lg sidebar-link">Blockchain</a>
+      <a href="tokens.html" class="block px-4 py-2 rounded-lg sidebar-link">Tokens</a>
+      <a href="zedx.html" class="block px-4 py-2 rounded-lg sidebar-link">ZEDX</a>
+      <a href="charts.html" class="block px-4 py-2 rounded-lg sidebar-link">Charts & Stats</a>
+      <a href="api.html" class="block px-4 py-2 rounded-lg sidebar-link">API</a>
+      <a href="bank.html" class="block px-4 py-2 rounded-lg sidebar-link">NeoBank</a>
+      <a href="cex1.html" class="block px-4 py-2 rounded-lg sidebar-link">CEX1 (ZedXion)</a>
+      <a href="cex2.html" class="block px-4 py-2 rounded-lg sidebar-link">CEX2 (ZedCex)</a>
+      <a href="dex.html" class="block px-4 py-2 rounded-lg sidebar-link">Dex</a>
+      <a href="bridge.html" class="block px-4 py-2 rounded-lg sidebar-link">Bridge</a>
+      <a href="stake.html" class="block px-4 py-2 rounded-lg sidebar-link">Stake</a>
+      <a href="deploy.html" class="block px-4 py-2 rounded-lg sidebar-link">Token Deploy</a>
+      <a href="airdrop.html" class="block px-4 py-2 rounded-lg sidebar-link">Airdrop</a>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- ===== RIGHT SIDE — DASHBOARD PANELS ===== -->
+  <main class="flex-1 p-6">
+
+    <h2 class="text-3xl font-bold mb-6">Dashboard</h2>
+
+    <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+        <div class="text-sm text-slate-400">Total Blocks</div>
+        <div class="text-2xl font-bold mt-2">10,443,925</div>
       </div>
 
-      <!-- HERO KPI PANEL (yuxarı qalır) -->
-      <div class="rounded-3xl p-6 ring-1 ring-white/10 bg-white/5 shadow-2xl">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400">Latest Block</div>
-            <div class="text-2xl font-bold mt-1 break-words">#12,345,678</div>
-            <div class="text-xs text-slate-500 mt-1">~3s ago</div>
-          </div>
-          <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400">TPS</div>
-            <div class="text-2xl font-bold mt-1">127</div>
-            <div class="text-xs text-slate-500 mt-1">demo placeholder</div>
-          </div>
-          <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400">Gas Price</div>
-            <div class="text-2xl font-bold mt-1">3 gwei</div>
-            <div class="text-xs text-slate-500 mt-1">sample</div>
-          </div>
-          <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400">Active Wallets</div>
-            <div class="text-2xl font-bold mt-1">8,420</div>
-            <div class="text-xs text-slate-500 mt-1">mock data</div>
-          </div>
-        </div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+        <div class="text-sm text-slate-400">Average Block Time</div>
+        <div class="text-2xl font-bold mt-2">5.0 s</div>
       </div>
-    </div>
-  </section>
 
-  <!-- BIG STATS PANEL (hero-dan SONRA) -->
-  <section id="stats" class="mx-auto max-w-7xl px-4 py-10">
-    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-      <!-- Reusable card -->
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total blocks</div>
-        <div class="text-2xl font-bold mt-1 truncate">10,443,925</div>
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
+        <div class="text-sm text-slate-400">Total Transactions</div>
+        <div class="text-2xl font-bold mt-2">2,831,779</div>
       </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Average block time</div>
-        <div class="text-2xl font-bold mt-1 truncate">5.0 s</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total transactions</div>
-        <div class="text-2xl font-bold mt-1 truncate">2,831,779</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
+
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
         <div class="text-sm text-slate-400">Holders</div>
-        <div class="text-2xl font-bold mt-1 truncate">144,194</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Gas tracker</div>
-        <div class="text-2xl font-bold mt-1 truncate">2.01 Gwei</div>
+        <div class="text-2xl font-bold mt-2">144,194</div>
       </div>
 
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
         <div class="text-sm text-slate-400">Total Staked</div>
-        <div class="text-2xl font-bold mt-1 break-words">110,020,004.999 ZEDX</div>
+        <div class="text-2xl font-bold mt-2">110,020,004.999 ZEDX</div>
       </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
+
+      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-6">
         <div class="text-sm text-slate-400">Active Validators</div>
-        <div class="text-2xl font-bold mt-1 truncate">22 validators</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Next Cycle</div>
-        <div class="text-2xl font-bold mt-1 truncate">1d 13h 21m 37s</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Current cycle blocks</div>
-        <div class="text-2xl font-bold mt-1 break-words">10437128 - 10471688</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total Supply</div>
-        <div class="text-2xl font-bold mt-1 truncate">4,837,754,987.055</div>
+        <div class="text-2xl font-bold mt-2">22 validators</div>
       </div>
 
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Price</div>
-        <div class="text-2xl font-bold mt-1 truncate">$0.457</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Fully MarketCap</div>
-        <div class="text-2xl font-bold mt-1 truncate">$2,213,017,222.287</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">CS MarketCap</div>
-        <div class="text-2xl font-bold mt-1 truncate">$354,569,990.00</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Financial Reserves (Total Assets)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$10,702,167,361.58</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">ZEDXION Exchange (Vol 24h)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$1,183,474,083.93</div>
-      </div>
-
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total Market (CEXs Vol 24h)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$5,035,133,800.95</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total Value Locked TVL (Stake)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$3,647,256,976.00</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">ZedCex (Vol 24h)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$3,851,659,717.02</div>
-      </div>
-      <div class="rounded-2xl bg-white/5 ring-1 ring-white/10 p-5 min-h-[112px] flex flex-col justify-between">
-        <div class="text-sm text-slate-400">Total Value Locked TVL (Bridge)</div>
-        <div class="text-2xl font-bold mt-1 truncate">$25,675,235,987.00</div>
-      </div>
     </div>
-  </section>
 
-  <!-- DETAILED SECTIONS (DOLU NÜMUNƏ MƏLUMAT) -->
-  <section id="transactions" class="mx-auto max-w-7xl px-4 py-12">
-    <h2 class="text-2xl font-bold mb-4">Transactions</h2>
-    <div class="overflow-x-auto rounded-2xl ring-1 ring-white/10">
-      <table class="min-w-full text-sm">
-        <thead class="bg-white/5 text-slate-300">
-          <tr>
-            <th class="text-left px-4 py-3">Hash</th>
-            <th class="text-left px-4 py-3">From → To</th>
-            <th class="text-left px-4 py-3">Value</th>
-            <th class="text-left px-4 py-3">Age</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-white/5">
-          <tr>
-            <td class="px-4 py-3 font-mono text-xs truncate">0x9af1…7cde</td>
-            <td class="px-4 py-3 text-slate-300 truncate">0xA1…F3C → 0xB4…9D2</td>
-            <td class="px-4 py-3">$12,430</td>
-            <td class="px-4 py-3">24s</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 font-mono text-xs truncate">0x532b…14aa</td>
-            <td class="px-4 py-3 text-slate-300 truncate">0x77…0AA → 0x12…FEE</td>
-            <td class="px-4 py-3">$3,210</td>
-            <td class="px-4 py-3">1m</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  </main>
 
-  <section id="blocks" class="mx-auto max-w-7xl px-4 py-12">
-    <h2 class="text-2xl font-bold mb-4">Blocks</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-        <div class="text-xs text-slate-400">Block</div>
-        <div class="text-xl font-bold">#12,345,678</div>
-        <div class="text-xs text-slate-500 mt-1">tx: 147 • gas used: 53%</div>
-      </div>
-      <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-        <div class="text-xs text-slate-400">Block</div>
-        <div class="text-xl font-bold">#12,345,677</div>
-        <div class="text-xs text-slate-500 mt-1">tx: 131 • gas used: 48%</div>
-      </div>
-      <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-        <div class="text-xs text-slate-400">Block</div>
-        <div class="text-xl font-bold">#12,345,676</div>
-        <div class="text-xs text-slate-500 mt-1">tx: 109 • gas used: 51%</div>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <section id="holders" class="mx-auto max-w-7xl px-4 py-12">
-    <h2 class="text-2xl font-bold mb-4">Top Holders</h2>
-    <div class="overflow-x-auto rounded-2xl ring-1 ring-white/10">
-      <table class="min-w-full text-sm">
-        <thead class="bg-white/5 text-slate-300">
-          <tr>
-            <th class="text-left px-4 py-3">Address</th>
-            <th class="text-left px-4 py-3">Balance</th>
-            <th class="text-left px-4 py-3">Share</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-white/5">
-          <tr>
-            <td class="px-4 py-3 font-mono text-xs truncate">0xA3F4…DA4</td>
-            <td class="px-4 py-3">321,000,000</td>
-            <td class="px-4 py-3">6.6%</td>
-          </tr>
-          <tr>
-            <td class="px-4 py-3 font-mono text-xs truncate">0x00B9…7EF</td>
-            <td class="px-4 py-3">287,500,000</td>
-            <td class="px-4 py-3">5.9%</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="tokens" class="mx-auto max-w-7xl px-4 py-12">
-    <h2 class="text-2xl font-bold mb-4">Tokens</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="rounded-2xl p-5 bg-white/5 ring-1 ring-white/10">
-        <div class="text-sm text-slate-400">Symbol</div>
-        <div class="text-2xl font-bold">USDT.Z</div>
-        <div class="text-xs text-slate-500 mt-1">BNB Smart Chain • ZED Bridge</div>
-      </div>
-      <div class="rounded-2xl p-5 bg-white/5 ring-1 ring-white/10">
-        <div class="text-sm text-slate-400">Symbol</div>
-        <div class="text-2xl font-bold">FARUQ.Z</div>
-        <div class="text-xs text-slate-500 mt-1">BEP-20 • Demo</div>
-      </div>
-      <div class="rounded-2xl p-5 bg-white/5 ring-1 ring-white/10">
-        <div class="text-sm text-slate-400">Symbol</div>
-        <div class="text-2xl font-bold">ZEDX</div>
-        <div class="text-xs text-slate-500 mt-1">Native • Staking</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="mt-8 border-t border-white/10">
-    <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-slate-400 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p>© <span id="year"></span> ScanZED. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a class="hover:text-white" href="#privacy">Privacy</a>
-        <a class="hover:text-white" href="#terms">Terms</a>
-        <a class="px-2 py-1 rounded-lg bg-white/5 ring-1 ring-white/10" href="#status">Status</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
