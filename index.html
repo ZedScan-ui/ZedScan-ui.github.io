@@ -5,134 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScanZED Explorer</title>
 <script src="https://cdn.tailwindcss.com"></script>
+
 <style>
-  .menu-active { background-color: rgba(255,255,255,0.1); }
+  body { overflow-x: hidden; }
+  .sidebar-link:hover { background: rgba(255,255,255,0.08); }
 </style>
+
 </head>
 
-<body class="bg-slate-950 text-slate-100 flex">
+<body class="bg-slate-950 text-slate-100">
 
-<!-- =============== LEFT SIDEBAR =============== -->
-<aside class="w-64 h-screen bg-slate-900 border-r border-white/10 fixed top-0 left-0 overflow-y-auto">
-  <div class="p-5 text-xl font-bold text-cyan-400">ScanZED</div>
-  <nav class="mt-4 px-3 space-y-1 text-sm">
-    <button onclick="openPage('dashboard')" id="btn-dashboard"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Dashboard</button>
+<!-- ============= LEFT SIDEBAR (FULL HEIGHT TOP-ALIGNED) ============= -->
+<aside class="fixed top-0 left-0 h-screen w-56 bg-slate-900 border-r border-white/10 z-50">
 
-    <button onclick="openPage('blockchain')" id="btn-blockchain"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Blockchain</button>
+  <div class="p-5 text-xl font-bold text-cyan-400">
+    ScanZED
+  </div>
 
-    <button onclick="openPage('tokens')" id="btn-tokens"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Tokens</button>
-
-    <button onclick="openPage('zedx')" id="btn-zedx"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">ZEDX</button>
-
-    <button onclick="openPage('charts')" id="btn-charts"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Charts & Stats</button>
-
-    <button onclick="openPage('api')" id="btn-api"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">API</button>
-
-    <button onclick="openPage('bank')" id="btn-bank"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">NeoBank (ZedPay)</button>
-
-    <button onclick="openPage('cex1')" id="btn-cex1"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">CEX1 (ZedXion)</button>
-
-    <button onclick="openPage('cex2')" id="btn-cex2"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">CEX2 (ZedCex)</button>
-
-    <button onclick="openPage('dex')" id="btn-dex"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Dex</button>
-
-    <button onclick="openPage('bridge')" id="btn-bridge"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Bridge</button>
-
-    <button onclick="openPage('stake')" id="btn-stake"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Stake</button>
-
-    <button onclick="openPage('deploy')" id="btn-deploy"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Token Deploy</button>
-
-    <button onclick="openPage('airdrop')" id="btn-airdrop"
-      class="w-full text-left px-3 py-2 rounded-lg hover:bg-white/10">Airdrop</button>
+  <nav class="px-3 mt-2 space-y-1 text-sm">
+    <a href="blockchain.html" class="block px-3 py-2 rounded-lg sidebar-link">Blockchain</a>
+    <a href="tokens.html" class="block px-3 py-2 rounded-lg sidebar-link">Tokens</a>
+    <a href="zedx.html" class="block px-3 py-2 rounded-lg sidebar-link">ZEDX</a>
+    <a href="charts.html" class="block px-3 py-2 rounded-lg sidebar-link">Charts & Stats</a>
+    <a href="api.html" class="block px-3 py-2 rounded-lg sidebar-link">API</a>
+    <a href="bank.html" class="block px-3 py-2 rounded-lg sidebar-link">NeoBank (ZedPay)</a>
+    <a href="cex1.html" class="block px-3 py-2 rounded-lg sidebar-link">CEX1 (ZedXion)</a>
+    <a href="cex2.html" class="block px-3 py-2 rounded-lg sidebar-link">CEX2 (ZedCex)</a>
+    <a href="dex.html" class="block px-3 py-2 rounded-lg sidebar-link">Dex</a>
+    <a href="bridge.html" class="block px-3 py-2 rounded-lg sidebar-link">Bridge</a>
+    <a href="stake.html" class="block px-3 py-2 rounded-lg sidebar-link">Stake</a>
+    <a href="deploy.html" class="block px-3 py-2 rounded-lg sidebar-link">Token Deploy</a>
+    <a href="airdrop.html" class="block px-3 py-2 rounded-lg sidebar-link">Airdrop</a>
   </nav>
+
 </aside>
 
-<!-- =============== RIGHT CONTENT AREA =============== -->
-<main class="ml-64 w-full p-10">
 
-  <!-- each page is a section -->
-  <section id="dashboard" class="page">
-    <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
-    <p class="text-slate-400">Welcome to ScanZED Explorer.</p>
+<!-- ============= MAIN CONTENT (MÖVCUD DİZAYN TAM QALIR) ============= -->
+<main class="ml-56">   <!-- sidebar genişliyi qədər margin -->
+
+  <!-- BURADA SƏNİN BÜTÜN DİZAYNIN OLDUĞU KİMİ QALIR -->
+  <!-- Mən buranı boş saxlayıram → sən sadəcə əvvəlki hero+panel kodunu buraya qoyursan -->
+
+  <section class="text-center py-16 px-4">
+      <h2 class="text-4xl font-bold text-white">ZED 2.0 Blockchain Explorer</h2>
+      <p class="mt-4 text-slate-400">A fast and modern multi-chain explorer for <b>scanzed.com</b></p>
+
+      <div class="mt-8 flex justify-center gap-4 flex-wrap">
+        <a href="#transactions" class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-900 font-semibold">View Transactions</a>
+        <a href="#api" class="px-4 py-2 rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15">Developer API</a>
+      </div>
   </section>
 
-  <section id="blockchain" class="page hidden"></section>
-  <section id="blockchain" class="page hidden">
-  <h1 class="text-3xl font-bold mb-6">Blockchain Overview</h1>
-
-  <div class="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
-
-    <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-      <div class="text-xs text-slate-400">Current Block</div>
-      <div class="text-3xl font-bold mt-1">12,345,678</div>
-      <div class="text-xs text-slate-500 mt-1">Updated every 3s</div>
-    </div>
-
-    <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-      <div class="text-xs text-slate-400">Peers Connected</div>
-      <div class="text-3xl font-bold mt-1">281</div>
-      <div class="text-xs text-slate-500 mt-1">Validator + Full Nodes</div>
-    </div>
-
-    <div class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10">
-      <div class="text-xs text-slate-400">Network TPS</div>
-      <div class="text-3xl font-bold mt-1">127</div>
-      <div class="text-xs text-slate-500 mt-1">Avg last 10 min</div>
-    </div>
-  </div>
-
-  <h2 class="text-xl font-bold mt-10 mb-3">Latest Blocks</h2>
-  <div class="space-y-3">
-    <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-      <div class="font-bold text-cyan-300">Block #12,345,678</div>
-      <div class="text-xs text-slate-400">147 tx • gas used 53%</div>
-    </div>
-
-    <div class="rounded-2xl p-4 bg-white/5 ring-1 ring-white/10">
-      <div class="font-bold text-cyan-300">Block #12,345,677</div>
-      <div class="text-xs text-slate-400">131 tx • gas used 48%</div>
-    </div>
-  </div>
-</section>
-
-  <section id="tokens" class="page hidden"></section>
-  <section id="zedx" class="page hidden"></section>
-  <section id="charts" class="page hidden"></section>
-  <section id="api" class="page hidden"></section>
-  <section id="bank" class="page hidden"></section>
-  <section id="cex1" class="page hidden"></section>
-  <section id="cex2" class="page hidden"></section>
-  <section id="dex" class="page hidden"></section>
-  <section id="bridge" class="page hidden"></section>
-  <section id="stake" class="page hidden"></section>
-  <section id="deploy" class="page hidden"></section>
-  <section id="airdrop" class="page hidden"></section>
-
 </main>
-
-<script>
-function openPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-
-  document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("menu-active"));
-  document.getElementById("btn-" + id).classList.add("menu-active");
-}
-openPage("dashboard");
-</script>
 
 </body>
 </html>
