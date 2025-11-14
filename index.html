@@ -1,264 +1,389 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ScanZED Explorer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { overflow-x: hidden; }
-    .sidebar-link:hover { background: rgba(255,255,255,0.08); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - ZED USDT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #26A17B 0%, #23d997 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #667eea;
+        }
+        
+        /* Content */
+        .content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        h3 {
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .api-endpoint {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .method-get {
+            background: #28a745;
+            color: white;
+        }
+        
+        .method-post {
+            background: #007bff;
+            color: white;
+        }
+        
+        code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .param-table th,
+        .param-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .param-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .param-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">ZU</div>
+                <span>ZED USDT</span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="api.html">API</a>
+                <a href="whitepaper.html">Whitepaper</a>
+                <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
 
-  <!-- ================= TOP NAVBAR ================= -->
-  <header class="px-6 py-4 flex items-center justify-between bg-slate-900/60 backdrop-blur border-b border-white/10">
-    <div class="flex items-center gap-2">
-      <span class="text-xl font-bold text-cyan-400">ScanZED</span>
-      <span class="bg-cyan-500/20 text-cyan-300 px-2 py-0.5 rounded text-xs">Preview</span>
+    <div class="container">
+        <div class="content">
+            <h1>📡 API Documentation</h1>
+            <p>Complete API reference for integrating ZED USDT (zUSDT) into your applications.</p>
+
+            <h2>🔗 Contract Interaction</h2>
+            
+            <h3>Contract Address</h3>
+            <div class="success">
+                <strong>BNB Smart Chain:</strong><br>
+                <code>0xd47502b3dd0a133e7A1689BD491F5373041C78E6</code>
+            </div>
+
+            <h3>Network Details</h3>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Network Name</td>
+                        <td>BNB Smart Chain</td>
+                    </tr>
+                    <tr>
+                        <td>Chain ID</td>
+                        <td>56</td>
+                    </tr>
+                    <tr>
+                        <td>RPC URL</td>
+                        <td>https://bsc-dataseed.binance.org/</td>
+                    </tr>
+                    <tr>
+                        <td>Block Explorer</td>
+                        <td>https://bscscan.com</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>📝 Standard ERC20 Functions</h2>
+
+            <div class="api-endpoint">
+                <span class="method method-get">VIEW</span>
+                <strong>balanceOf</strong>
+                <p>Get token balance of an address</p>
+                <pre><code>function balanceOf(address account) public view returns (uint256)</code></pre>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>account</code> - The address to query</li>
+                </ul>
+                <p><strong>Returns:</strong> Token balance in wei (18 decimals)</p>
+            </div>
+
+            <div class="api-endpoint">
+                <span class="method method-post">WRITE</span>
+                <strong>transfer</strong>
+                <p>Transfer tokens to another address</p>
+                <pre><code>function transfer(address recipient, uint256 amount) public returns (bool)</code></pre>
+                <p><strong>Parameters:</strong></p>
+                <ul>
+                    <li><code>recipient</code> - Destination address</li>
+                    <li><code>amount</code> - Amount in wei (18 decimals)</li>
+                </ul>
+            </div>
+
+            <div class="api-endpoint">
+                <span class="method method-post">WRITE</span>
+                <strong>approve</strong>
+                <p>Approve spender to use your tokens</p>
+                <pre><code>function approve(address spender, uint256 amount) public returns (bool)</code></pre>
+            </div>
+
+            <h2>🔥 Advanced Functions</h2>
+
+            <div class="api-endpoint">
+                <span class="method method-post">OWNER</span>
+                <strong>burnFrom</strong>
+                <p>Burn tokens from specified address (owner only)</p>
+                <pre><code>function burnFrom(address account, uint256 amount) public onlyOwner</code></pre>
+                <div class="note">
+                    <strong>⚠️ Note:</strong> This function can only be called by the contract owner.
+                </div>
+            </div>
+
+            <h2>🔧 Integration Examples</h2>
+
+            <h3>Web3.js Example</h3>
+            <pre><code>const Web3 = require('web3');
+const web3 = new Web3('https://bsc-dataseed.binance.org/');
+
+const contractAddress = '0xd47502b3dd0a133e7A1689BD491F5373041C78E6';
+const abi = [...]; // ERC20 ABI
+
+const contract = new web3.eth.Contract(abi, contractAddress);
+
+// Get balance
+const balance = await contract.methods.balanceOf(userAddress).call();
+console.log('Balance:', web3.utils.fromWei(balance, 'ether'));
+
+// Transfer tokens
+await contract.methods.transfer(recipientAddress, amount).send({
+    from: senderAddress,
+    gas: 100000
+});</code></pre>
+
+            <h3>Ethers.js Example</h3>
+            <pre><code>const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider(
+    'https://bsc-dataseed.binance.org/'
+);
+
+const contractAddress = '0xd47502b3dd0a133e7A1689BD491F5373041C78E6';
+const contract = new ethers.Contract(contractAddress, abi, provider);
+
+// Get balance
+const balance = await contract.balanceOf(userAddress);
+console.log('Balance:', ethers.utils.formatEther(balance));</code></pre>
+
+            <h2>📊 Token Metadata</h2>
+            <table class="param-table">
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>ZED USDT</td>
+                    </tr>
+                    <tr>
+                        <td>Symbol</td>
+                        <td>zUSDT</td>
+                    </tr>
+                    <tr>
+                        <td>Decimals</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>Total Supply</td>
+                        <td>10,000,000</td>
+                    </tr>
+                    <tr>
+                        <td>Standard</td>
+                        <td>BEP-20 / ERC-20</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>🛡️ Security</h2>
+            <div class="success">
+                <p><strong>✓ Verified Contract:</strong> Source code is verified on BscScan</p>
+                <p><strong>✓ Audited:</strong> Built on OpenZeppelin standard</p>
+                <p><strong>✓ Owner Controls:</strong> Enhanced security with burn protection</p>
+            </div>
+
+            <h2>📞 Support</h2>
+            <p>For technical support and inquiries:</p>
+            <ul>
+                <li>Email: <a href="mailto:admin@scanzed.com">admin@scanzed.com</a></li>
+                <li>GitHub: <a href="https://github.com/zedscan-ui" target="_blank">github.com/zedscan-ui</a></li>
+                <li>Twitter: <a href="https://twitter.com/zedusdt" target="_blank">@zedusdt</a></li>
+            </ul>
+        </div>
     </div>
-
-    <nav class="flex gap-6 text-sm text-slate-300">
-      <a href="#" class="hover:text-white">Blockchain</a>
-      <a href="#" class="hover:text-white">Transactions</a>
-      <a href="#" class="hover:text-white">Blocks</a>
-      <a href="#" class="hover:text-white">Top Holders</a>
-      <a href="#" class="hover:text-white">Verified Contracts</a>
-      <a href="#" class="hover:text-white">Tokens</a>
-      <a href="#" class="hover:text-white">Charts &amp; Stats</a>
-      <a href="#" class="hover:text-white">API</a>
-      <a href="#" class="bg-cyan-500/20 text-cyan-200 px-3 py-1 rounded-lg hover:bg-cyan-500/30">Airdrop</a>
-      <a href="#" class="hover:text-white">Apps</a>
-    </nav>
-  </header>
-
-  <!-- ================= HERO ================= -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 pointer-events-none"></div>
-
-    <div class="relative max-w-6xl mx-auto px-6 pt-16 pb-20 flex flex-col lg:flex-row items-center gap-10">
-      <!-- Left text -->
-      <div class="flex-1 text-left">
-        <h1 class="text-5xl lg:text-6xl font-extrabold leading-tight">
-          Multi-Chain Explorer &amp;<br />
-          <span class="text-cyan-400">DeFi Hub</span>
-        </h1>
-
-        <p class="mt-6 text-slate-300 text-lg">
-          A fast landing for <span class="font-semibold">scanzed.com</span>. Plug your contracts, pools and stats here.
-          Clean, responsive and GitHub Pages-ready.
-        </p>
-
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="#"
-             class="px-5 py-2.5 bg-cyan-500 text-slate-900 rounded-xl font-semibold shadow-lg shadow-cyan-500/40">
-            View Transactions
-          </a>
-          <a href="#"
-             class="px-5 py-2.5 bg-white/10 ring-1 ring-white/15 rounded-xl hover:bg-white/15">
-            Developer API
-          </a>
-        </div>
-
-        <div class="mt-4 flex gap-3 text-xs text-slate-400">
-          <span class="px-3 py-1 rounded-full bg-white/10">BNB Smart Chain</span>
-          <span class="px-3 py-1 rounded-full bg-white/10">ZED 2.0</span>
-        </div>
-      </div>
-
-      <!-- Right stats box -->
-      <div class="flex-1 w-full lg:w-auto">
-        <div class="bg-slate-900/70 ring-1 ring-white/10 rounded-3xl p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400 mb-1">Latest Block</div>
-            <div class="text-2xl font-semibold">#12,345,678</div>
-            <div class="text-xs text-slate-500 mt-1">~3s ago</div>
-          </div>
-          <div class="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400 mb-1">TPS</div>
-            <div class="text-2xl font-semibold">127</div>
-            <div class="text-xs text-slate-500 mt-1">demo placeholder</div>
-          </div>
-          <div class="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400 mb-1">Gas Price</div>
-            <div class="text-2xl font-semibold">3 gwei</div>
-            <div class="text-xs text-slate-500 mt-1">sample</div>
-          </div>
-          <div class="rounded-2xl bg-slate-900/80 p-4 ring-1 ring-white/10">
-            <div class="text-xs text-slate-400 mb-1">Active Wallets</div>
-            <div class="text-2xl font-semibold">8,420</div>
-            <div class="text-xs text-slate-500 mt-1">mock data</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= MAIN LAYER: SIDEBAR + DASHBOARD ================= -->
-  <section class="border-t border-white/10 bg-slate-950">
-    <div class="flex w-full">
-
-      <!-- ===== SIDEBAR (scroll-la gedir, fixed deyil) ===== -->
-      <aside class="w-64 bg-slate-900/70 border-r border-white/10 px-4 py-6 space-y-2">
-        <nav class="text-slate-100 text-sm space-y-1">
-          <a href="#" class="block px-4 py-2 rounded-lg bg-white/10 font-medium">Dashboard</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Blockchain</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Tokens</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">ZEDX</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Charts &amp; Stats</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">API</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">NeoBank (ZedPay)</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">CEX1 (ZedXion)</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">CEX2 (ZedCex)</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Dex</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Bridge</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Stake</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Token Deploy</a>
-          <a href="#" class="block px-4 py-2 rounded-lg sidebar-link">Airdrop</a>
-        </nav>
-      </aside>
-
-      <!-- ===== DASHBOARD CONTENT ===== -->
-      <main class="flex-1 p-6 space-y-8">
-
-        <!-- Grid of stats -->
-        <div class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 text-sm">
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total blocks</div>
-            <div class="mt-2 text-xl font-semibold">10,443,925</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Average block time</div>
-            <div class="mt-2 text-xl font-semibold">5.0 s</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total transactions</div>
-            <div class="mt-2 text-xl font-semibold">2,831,779</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Holders</div>
-            <div class="mt-2 text-xl font-semibold">144,194</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Gas tracker</div>
-            <div class="mt-2 text-xl font-semibold">2.01 Gwei</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total Staked</div>
-            <div class="mt-2 text-xl font-semibold leading-snug">
-              110,020,004.999<br />ZEDX
-            </div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Active Validators</div>
-            <div class="mt-2 text-xl font-semibold">22 validators</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Next Cycle</div>
-            <div class="mt-2 text-xl font-semibold">1d 13h 21m 37s</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Current cycle blocks</div>
-            <div class="mt-2 text-xl font-semibold leading-snug">
-              10437128 -<br />10471688
-            </div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total Supply</div>
-            <div class="mt-2 text-xl font-semibold">4,837,754,987…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Price</div>
-            <div class="mt-2 text-xl font-semibold">$0.457</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Fully MarketCap</div>
-            <div class="mt-2 text-xl font-semibold">$2,213,017,22…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">CS MarketCap</div>
-            <div class="mt-2 text-xl font-semibold">$354,569,990.00</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Financial Reserves (Total Assets)</div>
-            <div class="mt-2 text-xl font-semibold">$10,702,167,3…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">ZEDXION Exchange (Vol 24h)</div>
-            <div class="mt-2 text-xl font-semibold">$1,183,474,08…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total Market (CEXs Vol 24h)</div>
-            <div class="mt-2 text-xl font-semibold">$5,035,133,80…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total Value Locked TVL (Stake)</div>
-            <div class="mt-2 text-xl font-semibold">$3,647,256,97…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">ZedCex (Vol 24h)</div>
-            <div class="mt-2 text-xl font-semibold">$3,851,659,71…</div>
-          </div>
-
-          <div class="rounded-2xl bg-slate-900/70 p-4 ring-1 ring-white/10">
-            <div class="text-slate-400 text-xs">Total Value Locked TVL (Bridge)</div>
-            <div class="mt-2 text-xl font-semibold">$25,675,235,9…</div>
-          </div>
-        </div>
-
-        <!-- Daily transactions chart block -->
-        <div class="rounded-3xl bg-slate-900/70 ring-1 ring-white/10 p-6">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-slate-100">
-              Daily transactions
-              <span class="align-middle text-xs text-slate-500 ml-1">●</span>
-            </h3>
-            <span class="text-xs text-slate-500">sample chart</span>
-          </div>
-
-          <div class="flex items-end gap-8">
-            <div>
-              <div class="text-3xl font-bold">6.99K</div>
-              <div class="text-xs text-slate-500 mt-1">Tx / day</div>
-            </div>
-
-            <div class="flex-1 relative h-40 bg-gradient-to-t from-slate-900 to-slate-800/40 rounded-2xl overflow-hidden">
-              <!-- simple fake line-chart -->
-              <svg viewBox="0 0 400 120" class="absolute inset-0 w-full h-full opacity-80">
-                <path d="M0 80 Q40 40 80 70 T160 60 T240 90 T320 50 T400 70"
-                      fill="none" stroke="rgba(56,189,248,0.9)" stroke-width="3" />
-              </svg>
-              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-                          bg-slate-900/90 text-xs text-slate-100 px-3 py-2 rounded-xl ring-1 ring-white/10">
-                <div class="font-semibold">Date</div>
-                <div class="text-slate-400">17 Oct 2025</div>
-                <div class="mt-1 text-slate-400">Tx/day <span class="font-semibold text-slate-100">7.41K</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </main>
-    </div>
-  </section>
-
 </body>
 </html>
