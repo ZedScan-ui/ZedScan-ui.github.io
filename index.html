@@ -243,79 +243,54 @@
               <div class="text-xs text-slate-500 mt-1">Tx / day</div>
             </div>
 
-           <!-- NEW BIG DAILY TRANSACTIONS CHART -->
-<div class="col-span-12 rounded-2xl bg-slate-900/80 p-8 mt-6">
-  <h2 class="text-xl font-semibold text-slate-100 mb-4 flex items-center gap-2">
-    Daily transactions
-    <span class="text-slate-500 text-sm">• updated daily</span>
-  </h2>
+      <!-- DAILY TRANSACTIONS SECTION -->
+<div class="rounded-2xl bg-slate-900/90 p-8 mt-10 w-full">
 
-  <div class="bg-slate-900/60 rounded-2xl p-6">
-    <canvas id="txChart" class="w-full h-72"></canvas>
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-white">Daily transactions</h2>
+    <span class="text-slate-400 text-sm">updated daily</span>
   </div>
 
-  <div class="flex items-center gap-10 mt-6">
-    <div>
-      <div class="text-4xl font-bold text-slate-100" id="todayTx">0</div>
-      <div class="text-slate-400 text-sm">Tx / day</div>
-    </div>
-
-    <div>
-      <div class="text-3xl font-bold text-slate-300" id="yesterdayTx">0</div>
-      <div class="text-slate-500 text-sm">Prev day</div>
-    </div>
+  <!-- LARGE FULL-WIDTH CHART -->
+  <div class="w-full h-80">
+    <canvas id="txChart"></canvas>
   </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-  // Example dates
-  const labels = ['10 Oct','11 Oct','12 Oct','13 Oct','14 Oct','15 Oct','16 Oct','17 Oct'];
+const ctx = document.getElementById('txChart');
 
-  // Example daily tx numbers
-  const dataPoints = [5200, 6100, 6800, 6400, 7200, 7600, 6900, 7410];
-
-  // UPDATE TODAY / YESTERDAY
-  document.getElementById('todayTx').innerText = (dataPoints[dataPoints.length-1] / 1000).toFixed(2) + "K";
-  document.getElementById('yesterdayTx').innerText = (dataPoints[dataPoints.length-2] / 1000).toFixed(2) + "K";
-
-  // DRAW CHART
-  const ctx = document.getElementById('txChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Tx/day',
-        data: dataPoints,
-        borderColor: 'rgb(56,189,248)',
-        backgroundColor: 'rgba(56,189,248,0.2)',
-        pointRadius: 5,
-        pointHoverRadius: 8,
-        pointBackgroundColor: 'rgb(56,189,248)',
-        tension: 0.4
-      }]
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['10 Oct','11 Oct','12 Oct','13 Oct','14 Oct','15 Oct','16 Oct','17 Oct'],
+    datasets: [{
+      label: 'Tx/day',
+      data: [5200, 6100, 6800, 6600, 7200, 7600, 6900, 7400],
+      borderColor: 'rgb(56,189,248)',
+      backgroundColor: 'rgba(56,189,248,0.25)',
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      tension: 0.4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true }
     },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: true }
-      },
-      scales: {
-        x: {
-          ticks: { color: '#94a3b8', font: { size: 12 } },
-          grid: { display: false }
-        },
-        y: {
-          ticks: { color: '#94a3b8', font: { size: 12 } },
-          grid: { color: 'rgba(255,255,255,0.05)' }
-        }
-      }
+    scales: {
+      x: { ticks: { color: 'rgb(148,163,184)' } },
+      y: { ticks: { color: 'rgb(148,163,184)' } }
     }
-  });
+  }
+});
 </script>
+
 
 
           </div>
