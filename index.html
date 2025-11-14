@@ -230,14 +230,21 @@
 <!-- DAILY TRANSACTIONS SECTION -->
 <div class="rounded-2xl bg-slate-900/90 p-8 mt-10 w-full">
 
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-white">Daily transactions</h2>
+  <!-- HEADER + BIG NUMBER -->
+  <div class="flex justify-between items-start mb-6">
+
+    <div>
+      <h2 class="text-2xl font-bold text-white">Daily transactions</h2>
+      <div id="bigTx" class="text-4xl font-extrabold text-cyan-300 mt-2">6.99K</div>
+      <div class="text-xs text-slate-400">Tx / day</div>
+    </div>
+
     <span class="text-slate-400 text-sm">updated daily</span>
   </div>
 
-  <!-- FULL WIDTH CHART -->
+  <!-- CHART -->
   <div class="w-full h-80">
-      <canvas id="txChart"></canvas>
+    <canvas id="txChart"></canvas>
   </div>
 
 </div>
@@ -248,13 +255,16 @@
 <script>
 const ctx = document.getElementById('txChart');
 
+// --- CHART DATA ---
+const txData = [5200, 6100, 6800, 6600, 7200, 7600, 6900, 7400];
+
 new Chart(ctx, {
   type: 'line',
   data: {
     labels: ['10 Oct','11 Oct','12 Oct','13 Oct','14 Oct','15 Oct','16 Oct','17 Oct'],
     datasets: [{
       label: 'Tx/day',
-      data: [5200, 6100, 6800, 6600, 7200, 7600, 6900, 7400],
+      data: txData,
       borderColor: 'rgb(56,189,248)',
       backgroundColor: 'rgba(56,189,248,0.25)',
       pointRadius: 4,
@@ -275,6 +285,23 @@ new Chart(ctx, {
     }
   }
 });
+
+// --- RANDOM DAILY NUMBER (auto updates every 10 seconds for demo) ---
+function randomTx() {
+  const min = 5500;
+  const max = 8000;
+  const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+  // Convert to X.XXK format
+  document.getElementById('bigTx').innerText = (num / 1000).toFixed(2) + "K";
+}
+
+// Run once at start
+randomTx();
+
+// Update every 10 hours (36000000 ms)
+// For testing you can set 10 sec = 10000 ms
+setInterval(randomTx, 36000000);
 </script>
 
 
