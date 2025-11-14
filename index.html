@@ -243,83 +243,80 @@
               <div class="text-xs text-slate-500 mt-1">Tx / day</div>
             </div>
 
-           <!-- DAILY TRANSACTIONS SECTION -->
-<div class="rounded-3xl bg-slate-900/70 ring-1 ring-white/10 p-6">
-  <div class="flex items-center justify-between mb-4">
-    <h3 class="text-lg font-semibold text-slate-100">
-      Daily transactions
-      <span class="align-middle text-xs text-slate-500 ml-1">●</span>
-    </h3>
-    <span class="text-xs text-slate-500">updated daily</span>
+           <!-- NEW BIG DAILY TRANSACTIONS CHART -->
+<div class="col-span-12 rounded-2xl bg-slate-900/80 p-8 mt-6">
+  <h2 class="text-xl font-semibold text-slate-100 mb-4 flex items-center gap-2">
+    Daily transactions
+    <span class="text-slate-500 text-sm">• updated daily</span>
+  </h2>
+
+  <div class="bg-slate-900/60 rounded-2xl p-6">
+    <canvas id="txChart" class="w-full h-72"></canvas>
   </div>
 
-  <div class="flex items-end gap-8">
-    <!-- DAILY NUMBER -->
+  <div class="flex items-center gap-10 mt-6">
     <div>
-      <div id="dailyTx" class="text-3xl font-bold">6.99K</div>
-      <div class="text-xs text-slate-500 mt-1">Tx / day</div>
+      <div class="text-4xl font-bold text-slate-100" id="todayTx">0</div>
+      <div class="text-slate-400 text-sm">Tx / day</div>
     </div>
 
-    <!-- CHART AREA -->
-    <div class="flex-1 rounded-2xl bg-slate-900/90 p-6 h-64">
-      <canvas id="txChart"></canvas>
+    <div>
+      <div class="text-3xl font-bold text-slate-300" id="yesterdayTx">0</div>
+      <div class="text-slate-500 text-sm">Prev day</div>
     </div>
   </div>
 </div>
 
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-// ========== DAILY TX NUMBER (changes once per day) ==========
-function generateDailyTx() {
-  const min = 6500;
-  const max = 7800;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+  // Example dates
+  const labels = ['10 Oct','11 Oct','12 Oct','13 Oct','14 Oct','15 Oct','16 Oct','17 Oct'];
 
-const today = new Date().toISOString().split('T')[0];
+  // Example daily tx numbers
+  const dataPoints = [5200, 6100, 6800, 6400, 7200, 7600, 6900, 7410];
 
-if (localStorage.getItem("tx_day_date") !== today) {
-  const newValue = generateDailyTx();
-  localStorage.setItem("tx_day_value", newValue);
-  localStorage.setItem("tx_day_date", today);
-}
+  // UPDATE TODAY / YESTERDAY
+  document.getElementById('todayTx').innerText = (dataPoints[dataPoints.length-1] / 1000).toFixed(2) + "K";
+  document.getElementById('yesterdayTx').innerText = (dataPoints[dataPoints.length-2] / 1000).toFixed(2) + "K";
 
-const dailyValue = localStorage.getItem("tx_day_value");
-document.getElementById("dailyTx").innerText = (dailyValue / 1000).toFixed(2) + "K";
-
-
-// ========== CHART (interactive) ==========
-const ctx = document.getElementById('txChart');
-
-new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['10 Oct','11 Oct','12 Oct','13 Oct','14 Oct','15 Oct','16 Oct','17 Oct'],
-    datasets: [{
-      label: 'Tx/day',
-      data: [5200, 6100, 6800, 6400, 7200, 7600, 6900, dailyValue],
-      borderColor: 'rgb(56,189,248)',
-      backgroundColor: 'rgba(56,189,248,0.2)',
-      pointRadius: 4,
-      pointHoverRadius: 6,
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: true }
+  // DRAW CHART
+  const ctx = document.getElementById('txChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Tx/day',
+        data: dataPoints,
+        borderColor: 'rgb(56,189,248)',
+        backgroundColor: 'rgba(56,189,248,0.2)',
+        pointRadius: 5,
+        pointHoverRadius: 8,
+        pointBackgroundColor: 'rgb(56,189,248)',
+        tension: 0.4
+      }]
     },
-    scales: {
-      x: { ticks: { color: 'rgb(148,163,184)' } },
-      y: { ticks: { color: 'rgb(148,163,184)' } }
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#94a3b8', font: { size: 12 } },
+          grid: { display: false }
+        },
+        y: {
+          ticks: { color: '#94a3b8', font: { size: 12 } },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
     }
-  }
-});
+  });
 </script>
+
 
           </div>
         </div>
